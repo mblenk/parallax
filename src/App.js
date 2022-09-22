@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import Parallax from './components/Parallax';
+import Content from './components/Content'
+import { useState } from 'react'
 
 function App() {
+  const [endOfParallax, setEndOfParallax] = useState(false)
+  const [contentVisible, setContentVisible] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="relative bg-black text-white tracking-wide">
+      <div className="h-screen w-screen overflow-y-auto overflow-x-hidden perspective scroll-smooth">
+        <Parallax 
+          contentVisible={contentVisible} 
+          endOfParallax={endOfParallax} 
+        />
+        <Content 
+          setEndOfParallax={setEndOfParallax} 
+          setContentVisible={setContentVisible} 
+        />
+      </div>
     </div>
   );
 }
